@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+    @apply block w-full h-full overflow-hidden;
+}
+
+html {
+    @apply font-[DIN2014]
+}
+
+/* DIN2014-DemiBold */
+@font-face {
+    font-family: 'DIN2014';
+    font-weight: 600;
+    font-style: normal;
+    src: url('fonts/DIN2014-DemiBold.ttf') format('truetype');
+}
+
+/* DIN2014-DemiBoldItalic */
+@font-face {
+    font-family: 'DIN2014';
+    font-weight: 600;
+    font-style: italic;
+    src: url('fonts/DIN2014-DemiBoldItalic.ttf') format('truetype');
+}
+
+/* DIN2014-ExtraBold */
+@font-face {
+    font-family: 'DIN2014';
+    font-weight: 800;
+    font-style: normal;
+    src: url('fonts/DIN2014-ExtraBold.ttf') format('truetype');
+}
+
+/* DIN2014-ExtraBoldItalic */
+@font-face {
+    font-family: 'DIN2014';
+    font-weight: 800;
+    font-style: italic;
+    src: url('fonts/DIN2014-ExtraBoldItalic.ttf') format('truetype');
+}
+
+/* DIN2014-ExtraLight */
+@font-face {
+    font-family: 'DIN2014';
+    font-weight: 200;
+    font-style: normal;
+    src: url('fonts/DIN2014-ExtraLight.ttf') format('truetype');
+}
+
+/* DIN2014-ExtraLightItalic */
+@font-face {
+    font-family: 'DIN2014';
+    font-weight: 200;
+    font-style: italic;
+    src: url('fonts/DIN2014-ExtraLightItalic.ttf') format('truetype');
+}
+
+/* DIN2014-Italic */
+@font-face {
+    font-family: 'DIN2014';
+    font-weight: normal;
+    font-style: italic;
+    src: url('fonts/DIN2014-Italic.ttf') format('truetype');
+}
+
+/* DIN2014-Light */
+@font-face {
+    font-family: 'DIN2014';
+    font-weight: 300;
+    font-style: normal;
+    src: url('fonts/DIN2014-Light.ttf') format('truetype');
+}
+
+/* DIN2014-LightItalic */
+@font-face {
+    font-family: 'DIN2014';
+    font-weight: 300;
+    font-style: italic;
+    src: url('fonts/DIN2014-LightItalic.ttf') format('truetype');
+}
+
+/* DIN2014-Regular */
+@font-face {
+    font-family: 'DIN2014';
+    font-weight: normal;
+    font-style: normal;
+    src: url('fonts/DIN2014-Regular.ttf') format('truetype');
+}
+
+/* DIN2014-Bold */
+@font-face {
+    font-family: 'DIN2014';
+    font-weight: bold;
+    font-style: normal;
+    src: url('fonts/DIN2014-Bold.ttf') format('truetype');
+}
+
+/* DIN2014-BoldItalic */
+@font-face {
+    font-family: 'DIN2014';
+    font-weight: bold;
+    font-style: italic;
+    src: url('fonts/DIN2014-BoldItalic.ttf') format('truetype');
+}
+
+.button {
+    @apply p-3 bg-yellow-400 hover:bg-yellow-300 border border-black/30 w-full text-center text-xl font-semibold rounded;
+}
+
+.text-input {
+    @apply w-full p-3 rounded bg-zinc-50 border outline-none font-semibold
+}
