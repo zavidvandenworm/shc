@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { ColorEnum, type Questionnaire } from '$lib/api/models';
-	import { fly } from 'svelte/transition';
 	import CardShell from './CardShell.svelte';
 	import { ToastSeverity, showToast } from '$lib/toastPresets';
 	import { goto } from '$app/navigation';
@@ -11,11 +10,7 @@
 
 	function isReadyToSubmit(): boolean {
 		for (let question of healthCheck.questions) {
-			if (
-				question.answer == null ||
-				question.answer.answerColor == null ||
-				question.answer.isFlagged
-			) {
+			if (question.answer == null || question.answer.answerColor == null) {
 				return false;
 			}
 		}
@@ -53,7 +48,7 @@
 		on:click={async () => {
 			if (!isReadyToSubmit()) {
 				showToast(
-					'De vragenlijst kan niet ingeleverd worden, er zijn geflagde en/of onbeantwoorde vragen.',
+					'De vragenlijst kan niet ingeleverd worden, er zijn onbeantwoorde vragen.',
 					ToastSeverity.Warning
 				);
 				return;
