@@ -4,9 +4,9 @@ export interface Company {
 }
 
 export enum ColorEnum {
-    Green,
-    Yellow,
-    Red
+    Green = 2,
+    Yellow = 1,
+    Red = 3,
 }
 
 export interface Answer {
@@ -31,4 +31,9 @@ export interface Questionnaire {
     versionId: number;
     company: Company;
     questions: Array<Question>;
+}
+
+export interface User {
+    userId: number,
+    name: string
 }

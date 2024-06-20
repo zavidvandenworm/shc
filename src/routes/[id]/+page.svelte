@@ -6,8 +6,11 @@
 	import { fade, fly } from 'svelte/transition';
 	import Information from '../../components/card/Information.svelte';
 	import Summary from '../../components/card/Summary.svelte';
-	import { GetHealthCheck } from '$lib/api/api';
+	import { GetHealthCheck, UpdateAnswer } from '$lib/api/api';
 	import type { Questionnaire } from '$lib/api/models';
+	import { get } from 'svelte/store';
+	import { UserStore } from '$lib/stores';
+	import { ToastSeverity, showToast } from '$lib/toastPresets';
 
 	let id: string;
 	let notFound: boolean = false;
@@ -36,6 +39,17 @@
 		}
 		healthCheck = hc;
 		monitorChanges = true;
+		document.addEventListener('questionChanged', async () => {
+			let changed = healthCheck!.questions![questionCurrent];
+			await UpdateAnswer({
+				questionId: changed.id,
+				userId: get(UserStore)!.userId,
+				answerColor: changed.answer.answerColor,
+				comment: changed.answer.comment,
+				isFlagged: changed.answer.isFlagged
+			});
+			showToast('Updated answer.', ToastSeverity.Success);
+		});
 	});
 
 	let questionCurrent = -1;

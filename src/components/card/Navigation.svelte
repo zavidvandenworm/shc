@@ -21,7 +21,7 @@
 </script>
 
 <div
-	class="h-20 sm:rounded-lg sm:mt-4 inline-flex w-full sm:w-max mx-auto justify-center items-center gap-4 text-xl font-semibold select-none bg-zinc-800 text-zinc-50 px-4"
+	class="h-20 sm:rounded-lg relative sm:mt-4 inline-flex w-full sm:w-max mx-auto justify-center items-center gap-4 text-xl font-semibold select-none bg-zinc-800 text-zinc-50 px-4 relatve"
 >
 	<button
 		class="nav"
@@ -62,6 +62,12 @@
 	>
 		<span class="material-symbols-outlined"> keyboard_double_arrow_right </span>
 	</button>
+	<div
+		style="right: {100.75 - 100 * ((questionCurrent + 1) / questionCount)}%;"
+		class="absolute bottom-1 left-1 h-2 bg-zinc-50 transition-all rounded-md"
+		class:bg-green-500={questionCurrent + 1 == questionCount}
+		class:bg-transparent={questionCurrent + 1 > questionCount}
+	></div>
 </div>
 
 <style lang="postcss">

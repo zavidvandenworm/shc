@@ -1,0 +1,1 @@
+export let questionChangeEvent = new Event('questionChanged');

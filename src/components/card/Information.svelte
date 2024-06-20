@@ -4,10 +4,6 @@
 
 	export let healthCheck: any;
 	export let questionCurrent: number;
-
-	document.addEventListener('questionChanged', () => {
-		alert('q changed: ' + healthCheck.question![questionCurrent].title);
-	});
 </script>
 
 <CardShell>

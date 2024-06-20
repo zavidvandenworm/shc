@@ -1,18 +1,17 @@
 <script lang="ts">
 	import { ColorEnum } from '$lib/api/models';
+	import { questionChangeEvent } from '$lib/events';
 
 	export let selected: ColorEnum | null;
-
-	let changeEvent = new Event('questionChanged');
 
 	function rate(answer: ColorEnum) {
 		if (selected == answer) {
 			selected = null;
-			document.dispatchEvent(changeEvent);
+			document.dispatchEvent(questionChangeEvent);
 			return;
 		}
 		selected = answer;
-		document.dispatchEvent(changeEvent);
+		document.dispatchEvent(questionChangeEvent);
 	}
 </script>
 

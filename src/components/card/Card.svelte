@@ -3,11 +3,10 @@
 	import { fly } from 'svelte/transition';
 	import Rate from './Rate.svelte';
 	import { CompleteComment } from '$lib/api/api';
-
-	let changeEvent = new Event('questionChanged');
-
+	import { questionChangeEvent } from '$lib/events';
 	export let question: Question;
 	export let questionCurrent: number;
+	let loadingAi: boolean = false;
 </script>
 
 <div
@@ -28,6 +27,7 @@
 				class:text-zinc-50={question.answer?.isFlagged}
 				on:click={() => {
 					question.answer.isFlagged = !question.answer.isFlagged;
+					document.dispatchEvent(questionChangeEvent);
 				}}><span class="material-symbols-outlined text-3xl">flag</span></button
 			>
 		</div>
@@ -38,16 +38,29 @@
 
 	<Rate bind:selected={question.answer.answerColor} />
 	<div class="h-40 w-full block relative rounded-xl overflow-hidden">
-		<textarea
-			bind:value={question.answer.comment}
-			on:change={() => document.dispatchEvent(changeEvent)}
-			placeholder="Comment..."
-			class="block text-lg w-full p-3 outline-none bg-zinc-500/5 h-40 resize-none text-zinc-950"
-		></textarea>
+		{#if loadingAi}
+			<textarea
+				disabled
+				bind:value={question.answer.comment}
+				on:change={() => document.dispatchEvent(questionChangeEvent)}
+				placeholder="Comment..."
+				class="animate-pulse block text-lg w-full p-3 outline-none bg-zinc-500/5 h-40 resize-none text-zinc-950"
+			></textarea>
+		{:else}
+			<textarea
+				bind:value={question.answer.comment}
+				on:change={() => document.dispatchEvent(questionChangeEvent)}
+				placeholder="Comment..."
+				class="block text-lg w-full p-3 outline-none bg-zinc-500/5 h-40 resize-none text-zinc-950"
+			></textarea>
+		{/if}
+
 		<button
 			on:click={async () => {
+				loadingAi = true;
 				question.answer.comment = await CompleteComment(question.answer.comment, question.title);
-				document.dispatchEvent(changeEvent);
+				document.dispatchEvent(questionChangeEvent);
+				loadingAi = false;
 			}}
 			class="absolute flex items-center justify-center aspect-square w-12 rounded-xl text-zinc-500 hover:text-zinc-900 right-0 bottom-0 hover:bg-zinc-950/5 transition-all active:bg-zinc-950/10"
 		>
