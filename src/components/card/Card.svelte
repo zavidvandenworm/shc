@@ -44,7 +44,7 @@
 				bind:value={question.answer.comment}
 				on:change={() => document.dispatchEvent(questionChangeEvent)}
 				placeholder="Comment..."
-				class="animate-pulse block text-lg w-full p-3 outline-none bg-zinc-500/5 h-40 resize-none text-zinc-950"
+				class="animate-pulse text-zinc-600 cursor-not-allowed block text-lg w-full p-3 outline-none bg-zinc-500/5 h-40 resize-none text-zinc-950"
 			></textarea>
 		{:else}
 			<textarea
