@@ -32,7 +32,7 @@
 			>
 		</div>
 		<p class="text-lg flex-grow my-4">
-			{question.description}
+			{question.description ?? ''}
 		</p>
 	</div>
 
